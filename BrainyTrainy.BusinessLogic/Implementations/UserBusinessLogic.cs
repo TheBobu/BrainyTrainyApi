@@ -5,7 +5,9 @@ using BrainyTrainy.Dtos.User;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 namespace BrainyTrainy.BusinessLogic.Implementations
@@ -44,10 +46,14 @@ namespace BrainyTrainy.BusinessLogic.Implementations
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new List<Claim>();
+            claims.Add(new Claim("email", user.Email));
+            claims.Add(new Claim("fullName", user.PersonInfoDto.FullName));
+            claims.Add(new Claim("address", user.PersonInfoDto.Address));
 
             var token = new JwtSecurityToken(config["Jwt:Issuer"],
               config["Jwt:Issuer"],
-              null,
+              claims,
               expires: DateTime.Now.AddMinutes(120),
               signingCredentials: credentials);
 
