@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BrainyTrainy.Data\BrainyTrainy.Data.csproj" />
     <ProjectReference Include="..\BrainyTrainy.Domain\BrainyTrainy.Domain.csproj" />
     <ProjectReference Include="..\BrainyTrainy.Dtos\BrainyTrainy.Dtos.csproj" />
   </ItemGroup>

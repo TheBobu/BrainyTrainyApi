@@ -7,6 +7,8 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
+using System.Security;
 using System.Security.Claims;
 using System.Text;
 
@@ -27,10 +29,11 @@ namespace BrainyTrainy.BusinessLogic.Implementations
 
         public AccountDto AuthenticateUser(LoginDto login)
         {
-            var user = unitOfWork.UserRepository.GetUserByEmail(login.EmailAddress);
+            var user = unitOfWork.UserRepository.GetUserByEmail(login.Email);
             if (user != null)
             {
-                if (login.Password.Equals(user.Password))
+                SecureString password = new NetworkCredential("", login.Password).SecurePassword;
+                if (password.Equals(user.Password))
                 {
                     return new AccountDto
                     {
