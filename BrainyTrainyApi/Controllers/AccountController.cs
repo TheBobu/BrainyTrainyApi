@@ -7,17 +7,17 @@ namespace BrainyTrainyApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController : Controller
+    public class AccountController : Controller
     {
         private IUserBusinessLogic userBusinessLogic;
 
-        public LoginController(IUserBusinessLogic userBusinessLogic)
+        public AccountController(IUserBusinessLogic userBusinessLogic)
         {
             this.userBusinessLogic = userBusinessLogic;
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("Login")]
         public IActionResult Login([FromBody] LoginDto login)
         {
             IActionResult response = Unauthorized();
@@ -26,6 +26,21 @@ namespace BrainyTrainyApi.Controllers
             if (user != null)
             {
                 response = Ok(user);
+            }
+
+            return response;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("Register")]
+        public IActionResult Register([FromBody] UserDto userDto)
+        {
+            IActionResult response = StatusCode(500);
+            bool result = userBusinessLogic.Register(userDto);
+
+            if (result)
+            {
+                response = Ok();
             }
 
             return response;

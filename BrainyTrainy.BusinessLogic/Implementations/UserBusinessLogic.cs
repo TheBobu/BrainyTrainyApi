@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BrainyTrainy.BusinessLogic.Interfaces;
 using BrainyTrainy.Domain;
+using BrainyTrainy.Domain.Entities;
 using BrainyTrainy.Dtos.User;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -43,6 +44,13 @@ namespace BrainyTrainy.BusinessLogic.Implementations
                 }
             }
             return null;
+        }
+
+        public bool Register(UserDto userDto)
+        {
+            userDto.Password = new NetworkCredential("", userDto.Password).SecurePassword.ToString();
+            unitOfWork.UserRepository.Add(mapper.Map<User>(userDto));
+            return false;
         }
 
         private string GenerateJSONWebToken(UserDto user)

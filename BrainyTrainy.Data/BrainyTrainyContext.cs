@@ -14,5 +14,12 @@ namespace BrainyTrainy.Data
         public BrainyTrainyContext(DbContextOptions<BrainyTrainyContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+        }
     }
 }

@@ -9,7 +9,9 @@ namespace BrainyTrainy.BusinessLogic
         public AutoMapperProfile()
         {
             CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
             CreateMap<PersonInfo, PersonInfoDto>();
+            CreateMap<PersonInfoDto, PersonInfo>();
         }
     }
 }
