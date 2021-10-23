@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Security;
 
-namespace BrainyTrainy.Data.Entities
+namespace BrainyTrainy.Domain.Entities
 {
     public class User
     {
@@ -11,7 +10,7 @@ namespace BrainyTrainy.Data.Entities
         public PersonInfo Info { get; set; }
 
         [Required]
-        public SecureString Password { get; set; }
+        public string Password { get; set; }
 
         public int UserId { get; set; }
     }

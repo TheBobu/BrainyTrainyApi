@@ -1,26 +1,25 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace BrainyTrainy.Data.Entities
+namespace BrainyTrainy.Domain.Entities
 {
-    public class GameHistory
+    public class GameProgress
     {
         [Required]
-        public DateTime AddedDate { get; set; }
+        public int AverageScore { get; set; }
 
+        public TimeSpan AverageTime { get; set; }
         public Game Game { get; set; }
-        public int GameHistoryId { get; set; }
 
         [Required]
         public int GameId { get; set; }
 
-        [Required]
-        public int Score { get; set; }
-
-        public TimeSpan TimeCompleted { get; set; }
+        public int GameProgressId { get; set; }
         public User User { get; set; }
 
         [Required]
         public int UserId { get; set; }
+
+        public DateTime Week { get; set; }
     }
 }

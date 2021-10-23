@@ -1,4 +1,4 @@
-﻿namespace BrainyTrainy.Data.Enums
+﻿namespace BrainyTrainy.Domain.Enums
 {
     public enum GameType
     {

@@ -1,7 +1,7 @@
-﻿using BrainyTrainy.Data.Enums;
+﻿using BrainyTrainy.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace BrainyTrainy.Data.Entities
+namespace BrainyTrainy.Domain.Entities
 {
     public class Game
     {

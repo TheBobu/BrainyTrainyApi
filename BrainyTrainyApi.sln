@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainyTrainy.Api", "BrainyTrainyApi\BrainyTrainy.Api.csproj", "{41F8CD1C-F903-4841-B916-0C597CE41BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainyTrainy.BusinessLogic", "BrainyTrainy.BusinessLogic\BrainyTrainy.BusinessLogic.csproj", "{525F3E51-DFEE-47B5-998B-1E3D68D55E95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainyTrainy.BusinessLogic", "BrainyTrainy.BusinessLogic\BrainyTrainy.BusinessLogic.csproj", "{525F3E51-DFEE-47B5-998B-1E3D68D55E95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainyTrainy.Data", "BrainyTrainy.Data\BrainyTrainy.Data.csproj", "{A852F8E1-54E8-41A5-A6AC-FD0BC82DD165}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainyTrainy.Data", "BrainyTrainy.Data\BrainyTrainy.Data.csproj", "{A852F8E1-54E8-41A5-A6AC-FD0BC82DD165}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainyTrainy.Dtos", "BrainyTrainy.Dtos\BrainyTrainy.Dtos.csproj", "{88EA3841-60C2-4B6B-B06E-1A09596A88DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainyTrainy.Dtos", "BrainyTrainy.Dtos\BrainyTrainy.Dtos.csproj", "{88EA3841-60C2-4B6B-B06E-1A09596A88DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainyTrainy.Domain", "BrainyTrainy.Domain\BrainyTrainy.Domain.csproj", "{5C6585C8-A81F-4A17-A25C-8B5B881E7908}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{88EA3841-60C2-4B6B-B06E-1A09596A88DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88EA3841-60C2-4B6B-B06E-1A09596A88DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88EA3841-60C2-4B6B-B06E-1A09596A88DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C6585C8-A81F-4A17-A25C-8B5B881E7908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C6585C8-A81F-4A17-A25C-8B5B881E7908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C6585C8-A81F-4A17-A25C-8B5B881E7908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C6585C8-A81F-4A17-A25C-8B5B881E7908}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
