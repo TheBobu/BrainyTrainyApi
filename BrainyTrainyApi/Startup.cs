@@ -1,3 +1,4 @@
+using BrainyTrainy.BusinessLogic;
 using BrainyTrainy.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -40,6 +41,8 @@ namespace BrainyTrainyApi
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
+            services.AddAutoMapper(typeof(AutoMapperProfile));
+            services.AddDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

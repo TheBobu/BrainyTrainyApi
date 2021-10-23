@@ -6,7 +6,9 @@ namespace BrainyTrainy.Data
     {
         private readonly BrainyTrainyContext brainyTrainyContext;
         private IGameRepository gameRepository;
+        private IUserRepository userRepository;
         public IGameRepository GameRepository => gameRepository ??= new GameRepository(brainyTrainyContext);
+        public IUserRepository UserRepository => userRepository ??= new UserRepository(brainyTrainyContext);
 
         public UnitOfWork(BrainyTrainyContext brainyTrainyContext)
         {

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using BrainyTrainy.Dtos.User;
 
 namespace BrainyTrainy.BusinessLogic.Interfaces
 {
     public interface IUserBusinessLogic
     {
+        AccountDto AuthenticateUser(LoginDto login);
     }
 }

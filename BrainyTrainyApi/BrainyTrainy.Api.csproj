@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
       <PrivateAssets>all</PrivateAssets>
@@ -13,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BrainyTrainy.BusinessLogic\BrainyTrainy.BusinessLogic.csproj" />
     <ProjectReference Include="..\BrainyTrainy.Data\BrainyTrainy.Data.csproj" />
     <ProjectReference Include="..\BrainyTrainy.Dtos\BrainyTrainy.Dtos.csproj" />
   </ItemGroup>
