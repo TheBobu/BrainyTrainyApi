@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BrainyTrainy.BusinessLogic.Interfaces;
-using BrainyTrainy.Domain;
 using BrainyTrainy.Domain.Entities;
 using BrainyTrainy.Domain.Interfaces;
 using BrainyTrainy.Dtos.User;
@@ -9,8 +8,6 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
-using System.Security;
 using System.Security.Claims;
 using System.Text;
 
@@ -51,7 +48,9 @@ namespace BrainyTrainy.BusinessLogic.Implementations
         {
             try
             {
+                unitOfWork.PersonInfoRepository.Add(mapper.Map<PersonInfo>(userDto.Info));
                 unitOfWork.UserRepository.Add(mapper.Map<User>(userDto));
+                unitOfWork.Save();
                 return true;
             }
             catch (Exception ex)
