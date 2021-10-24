@@ -2,6 +2,7 @@
 using BrainyTrainy.BusinessLogic.Interfaces;
 using BrainyTrainy.Domain;
 using BrainyTrainy.Domain.Entities;
+using BrainyTrainy.Domain.Interfaces;
 using BrainyTrainy.Dtos.User;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -31,10 +32,10 @@ namespace BrainyTrainy.BusinessLogic.Implementations
         public AccountDto AuthenticateUser(LoginDto login)
         {
             var user = unitOfWork.UserRepository.GetUserByEmail(login.Email);
+            user.Info = unitOfWork.PersonInfoRepository.Get(user.InfoId).Result;
             if (user != null)
             {
-                SecureString password = new NetworkCredential("", login.Password).SecurePassword;
-                if (password.Equals(user.Password))
+                if (login.Password.Equals(user.Password))
                 {
                     return new AccountDto
                     {
@@ -48,9 +49,15 @@ namespace BrainyTrainy.BusinessLogic.Implementations
 
         public bool Register(UserDto userDto)
         {
-            userDto.Password = new NetworkCredential("", userDto.Password).SecurePassword.ToString();
-            unitOfWork.UserRepository.Add(mapper.Map<User>(userDto));
-            return false;
+            try
+            {
+                unitOfWork.UserRepository.Add(mapper.Map<User>(userDto));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         private string GenerateJSONWebToken(UserDto user)
@@ -59,8 +66,8 @@ namespace BrainyTrainy.BusinessLogic.Implementations
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new List<Claim>();
             claims.Add(new Claim("email", user.Email));
-            claims.Add(new Claim("fullName", user.PersonInfoDto.FullName));
-            claims.Add(new Claim("address", user.PersonInfoDto.Address));
+            claims.Add(new Claim("fullName", user.Info.FullName));
+            claims.Add(new Claim("address", user.Info.Address));
 
             var token = new JwtSecurityToken(config["Jwt:Issuer"],
               config["Jwt:Issuer"],

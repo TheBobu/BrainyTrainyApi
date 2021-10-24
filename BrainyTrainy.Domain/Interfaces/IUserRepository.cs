@@ -1,6 +1,6 @@
 ﻿using BrainyTrainy.Domain.Entities;
 
-namespace BrainyTrainy.Domain
+namespace BrainyTrainy.Domain.Interfaces
 {
     public interface IUserRepository : IBaseRepository<User, int>
     {

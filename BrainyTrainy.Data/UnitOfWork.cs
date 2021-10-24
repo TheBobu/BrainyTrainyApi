@@ -1,4 +1,5 @@
 ﻿using BrainyTrainy.Domain;
+using BrainyTrainy.Domain.Interfaces;
 
 namespace BrainyTrainy.Data
 {
@@ -7,8 +8,10 @@ namespace BrainyTrainy.Data
         private readonly BrainyTrainyContext brainyTrainyContext;
         private IGameRepository gameRepository;
         private IUserRepository userRepository;
+        private IPersonInfoRepository personInfoRepository;
         public IGameRepository GameRepository => gameRepository ??= new GameRepository(brainyTrainyContext);
         public IUserRepository UserRepository => userRepository ??= new UserRepository(brainyTrainyContext);
+        public IPersonInfoRepository PersonInfoRepository => personInfoRepository ??= new PersonInfoRepository(brainyTrainyContext);
 
         public UnitOfWork(BrainyTrainyContext brainyTrainyContext)
         {

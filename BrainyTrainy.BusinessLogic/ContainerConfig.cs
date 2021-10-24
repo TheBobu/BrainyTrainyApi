@@ -2,6 +2,7 @@
 using BrainyTrainy.BusinessLogic.Interfaces;
 using BrainyTrainy.Data;
 using BrainyTrainy.Domain;
+using BrainyTrainy.Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BrainyTrainy.BusinessLogic

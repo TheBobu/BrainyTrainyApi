@@ -7,6 +7,7 @@ namespace BrainyTrainy.Domain.Entities
         [Required]
         public string Email { get; set; }
 
+        public int InfoId { get; set; }
         public PersonInfo Info { get; set; }
 
         [Required]

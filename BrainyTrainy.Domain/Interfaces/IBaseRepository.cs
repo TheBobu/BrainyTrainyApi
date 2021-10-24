@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BrainyTrainy.Domain
+namespace BrainyTrainy.Domain.Interfaces
 {
     public interface IBaseRepository<TEntity, TId> where TEntity : class
     {

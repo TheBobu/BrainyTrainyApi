@@ -1,5 +1,5 @@
-﻿using BrainyTrainy.Domain;
-using BrainyTrainy.Domain.Entities;
+﻿using BrainyTrainy.Domain.Entities;
+using BrainyTrainy.Domain.Interfaces;
 using System.Linq;
 
 namespace BrainyTrainy.Data
