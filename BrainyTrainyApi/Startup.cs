@@ -20,6 +20,7 @@ namespace BrainyTrainyApi
         }
 
         public IConfiguration Configuration { get; }
+        private readonly string ApiOrigin = "_apiOrigin";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -44,6 +45,16 @@ namespace BrainyTrainyApi
             services.AddAutoMapper(typeof(AutoMapperProfile));
             services.AddDependencies();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: ApiOrigin, builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                    .WithMethods("POST", "GET", "PUT", "DELETE")
+                    .WithHeaders("*");
+                });
+            });
+
             services.AddSwaggerGen();
         }
 
@@ -60,6 +71,8 @@ namespace BrainyTrainyApi
                 });
             }
 
+            app.UseCors(ApiOrigin);
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
