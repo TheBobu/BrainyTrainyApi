@@ -29,6 +29,10 @@ namespace BrainyTrainy.BusinessLogic.Implementations
         public AccountDto AuthenticateUser(LoginDto login)
         {
             var user = unitOfWork.UserRepository.GetUserByEmail(login.Email);
+            if (user == null)
+            {
+                return null;
+            }
             user.Info = unitOfWork.PersonInfoRepository.Get(user.InfoId).Result;
             if (user != null)
             {
