@@ -6,5 +6,6 @@ namespace BrainyTrainy.BusinessLogic.Interfaces
     {
         AccountDto AuthenticateUser(LoginDto login);
         bool Register(UserDto userDto);
+        UserDto GetUserInfo(int id);
     }
 }

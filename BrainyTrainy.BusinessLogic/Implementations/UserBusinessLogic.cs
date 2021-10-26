@@ -48,6 +48,18 @@ namespace BrainyTrainy.BusinessLogic.Implementations
             return null;
         }
 
+        public UserDto GetUserInfo(int id)
+        {
+            var user = unitOfWork.UserRepository.Get(id).Result;
+            user.Info = unitOfWork.PersonInfoRepository.Get(user.InfoId).Result;
+
+            if (user != null)
+            {
+                return mapper.Map<UserDto>(user);
+            }
+            return null;
+        }
+
         public bool Register(UserDto userDto)
         {
             try

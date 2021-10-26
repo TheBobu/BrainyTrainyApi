@@ -1,12 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BrainyTrainy.BusinessLogic.Interfaces;
+using BrainyTrainy.Dtos.User;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BrainyTrainy.Api.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UserController : Controller
     {
-        public IActionResult Index()
+        private readonly IUserBusinessLogic userBusinessLogic;
+
+        public UserController(IUserBusinessLogic userBusinessLogic)
         {
-            return View();
+            this.userBusinessLogic = userBusinessLogic;
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetUserInfo([FromRoute]int id)
+        {
+            IActionResult result = NotFound();
+            UserDto user = userBusinessLogic.GetUserInfo(id);
+            if (user != null)
+            {
+                result = Ok(user);
+            }
+            return result;
         }
     }
 }

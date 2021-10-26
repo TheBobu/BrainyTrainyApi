@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System;
 using System.Text;
 
 namespace BrainyTrainyApi
@@ -44,6 +46,7 @@ namespace BrainyTrainyApi
             });
             services.AddAutoMapper(typeof(AutoMapperProfile));
             services.AddDependencies();
+            services.AddHttpContextAccessor();
 
             services.AddCors(options =>
             {
@@ -55,7 +58,24 @@ namespace BrainyTrainyApi
                 });
             });
 
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(o =>
+            {
+                o.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header. Example \"Bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                o.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme{Reference=new OpenApiReference{Type=ReferenceType.SecurityScheme, Id="Bearer"}},
+                        Array.Empty<string>()
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,12 +92,13 @@ namespace BrainyTrainyApi
             }
 
             app.UseCors(ApiOrigin);
-            
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
