@@ -1,3 +1,4 @@
+using BrainyTrainy.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -7,7 +8,7 @@ namespace BrainyTrainyApi
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().MigrateDatabase<BrainyTrainyContext>().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
