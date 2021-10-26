@@ -13,6 +13,8 @@ namespace BrainyTrainy.Data
         public IUserRepository UserRepository => userRepository ??= new UserRepository(brainyTrainyContext);
         public IPersonInfoRepository PersonInfoRepository => personInfoRepository ??= new PersonInfoRepository(brainyTrainyContext);
 
+        public IGameProgressRepository GameProgressRepository => throw new System.NotImplementedException();
+
         public UnitOfWork(BrainyTrainyContext brainyTrainyContext)
         {
             this.brainyTrainyContext = brainyTrainyContext;

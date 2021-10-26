@@ -7,6 +7,7 @@ namespace BrainyTrainy.Domain.Interfaces
         IGameRepository GameRepository { get; }
         IUserRepository UserRepository { get; }
         IPersonInfoRepository PersonInfoRepository { get; }
+        IGameProgressRepository GameProgressRepository { get; }
         void Save();
 
         void Dispose();
