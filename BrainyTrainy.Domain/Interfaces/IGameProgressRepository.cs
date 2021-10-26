@@ -7,6 +7,5 @@ namespace BrainyTrainy.Domain.Interfaces
 {
     public interface IGameProgressRepository: IBaseRepository<GameProgress, int>
     {
-        IGameProgressRepository GetGameProgressById(int id);
     }
 }

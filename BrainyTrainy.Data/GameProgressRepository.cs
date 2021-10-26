@@ -10,14 +10,4 @@ namespace BrainyTrainy.Data
         {
 
         }
-        public GameProgress GetGameProgressById(int id)
-        {
-            return DbContext.Set<GameProgress>().FirstOrDefault(x => x.GameId == id);
-        }
-
-        IGameProgressRepository IGameProgressRepository.GetGameProgressById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
 }
