@@ -61,6 +61,7 @@ namespace BrainyTrainy.Api.Controllers
         {
             IActionResult result = StatusCode(404);
             var leaderboard = gameHistoryBusinessLogic.GetBestScores();
+
             if (leaderboard != null)
             {
                 result = Ok(leaderboard);

@@ -12,6 +12,6 @@ namespace BrainyTrainy.BusinessLogic.Interfaces
         GameHistoryDto GetGameHistory(int id);
         List<GameHistoryDto> GetGameHistories(int userId);
         List<GameHistoryLightDto> GetGameHistoriesLight(int userId);
-        List<UserScoreDto> GetBestScores();
+        List<LeaderboardDto> GetBestScores();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BrainyTrainy.BusinessLogic.Interfaces;
 using BrainyTrainy.Domain.Entities;
+using BrainyTrainy.Domain.Enums;
 using BrainyTrainy.Domain.Interfaces;
 using BrainyTrainy.Dtos.Game;
 using BrainyTrainy.Dtos.User;
@@ -37,7 +38,7 @@ namespace BrainyTrainy.BusinessLogic.Implementations
             }
         }
 
-        public List<UserScoreDto> GetBestScores()
+        public List<LeaderboardDto> GetBestScores()
         {
             var gameHistories = unitOfWork.GameHistoryRepository.GetAll().Result;
             foreach (var record in gameHistories)
@@ -45,13 +46,37 @@ namespace BrainyTrainy.BusinessLogic.Implementations
                 record.User = unitOfWork.UserRepository.Get(record.UserId).Result;
                 record.User.Info = unitOfWork.PersonInfoRepository.Get(record.User.InfoId).Result;
             }
-            var scoresByUser = gameHistories.GroupBy(x => x.User.Info.FullName).Select(x => new UserScoreDto
+
+            var scoresByUser = gameHistories
+                .GroupBy(x => x.GameId)
+                .Select(x => new
+                {
+                    Game = Enum.GetName(typeof(GameType), x.Key),
+                    Records = x.Select(x => x)
+                })
+                .ToList();
+
+            var scores = new List<LeaderboardDto>();
+            foreach (var item in scoresByUser)
             {
-                FullName = x.Key,
-                Score = x.Select(item => item.Score).Max(),
-                TimeCompleted = x.Select(item => item.TimeCompleted).Min()
-            });
-            return scoresByUser.ToList();
+                var userScores = item.Records.GroupBy(x => x.User.Info.FullName).Select(x => new UserScoreDto
+                {
+                    FullName = x.Key,
+                    Score = x.Select(x => x.Score).Max(),
+                    TimeCompleted = x.Select(y => new
+                    {
+                        Score = y.Score,
+                        Time = y.TimeCompleted
+                    }).OrderByDescending(z => z.Score).FirstOrDefault().Time
+                });
+                scores.Add(new LeaderboardDto
+                {
+                    Game = item.Game,
+                    UserScores = userScores.ToList()
+                });
+            }
+
+            return scores;
         }
 
         public List<GameHistoryDto> GetGameHistories(int userId)
