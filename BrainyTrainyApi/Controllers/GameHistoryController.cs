@@ -28,18 +28,6 @@ namespace BrainyTrainy.Api.Controllers
             return result;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetGameHistory(int id)
-        {
-            IActionResult result = StatusCode(404);
-            var game = gameHistoryBusinessLogic.GetGameHistory(id);
-            if (game != null)
-            {
-                result = Ok(game);
-            }
-            return result;
-        }
-
         [HttpGet("All/{userId}")]
         public IActionResult GetGameHistories(int userId)
         {

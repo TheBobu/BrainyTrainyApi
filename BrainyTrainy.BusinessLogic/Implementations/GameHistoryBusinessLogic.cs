@@ -72,16 +72,11 @@ namespace BrainyTrainy.BusinessLogic.Implementations
                 scores.Add(new LeaderboardDto
                 {
                     Game = item.Game,
-                    UserScores = userScores.OrderByDescending(x=>x.Score).ToList()
+                    UserScores = userScores.OrderByDescending(x => x.Score).ToList()
                 });
             }
 
             return scores;
-        }
-
-        public List<GameHistoryDto> GetGameHistories(int userId)
-        {
-            throw new NotImplementedException();
         }
 
         public List<GameHistoryLightDto> GetGameHistoriesLight(int userId)
@@ -93,11 +88,6 @@ namespace BrainyTrainy.BusinessLogic.Implementations
                 );
 
             return gameHistories;
-        }
-
-        public GameHistoryDto GetGameHistory(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

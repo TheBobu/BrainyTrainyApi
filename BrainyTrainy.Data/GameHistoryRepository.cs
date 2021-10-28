@@ -1,8 +1,6 @@
 ﻿using BrainyTrainy.Domain.Entities;
 using BrainyTrainy.Domain.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace BrainyTrainy.Data

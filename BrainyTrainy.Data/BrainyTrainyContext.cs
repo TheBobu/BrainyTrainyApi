@@ -24,7 +24,6 @@ namespace BrainyTrainy.Data
                 .HasIndex(u => u.Email)
                 .IsUnique();
 
-            // Seed database with all Colors
             foreach (GameType gameType in Enum.GetValues(typeof(GameType)).Cast<GameType>())
             {
                 Game game = new Game
