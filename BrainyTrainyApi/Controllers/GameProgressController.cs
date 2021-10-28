@@ -1,6 +1,6 @@
-﻿using BrainyTrainy.Dtos.Game;
+﻿using BrainyTrainy.BusinessLogic.Interfaces;
+using BrainyTrainy.Dtos.Game;
 using Microsoft.AspNetCore.Mvc;
-using BrainyTrainy.BusinessLogic.Interfaces;
 
 namespace BrainyTrainy.Api.Controllers
 {
@@ -16,14 +16,10 @@ namespace BrainyTrainy.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetGameProgress([FromRoute]int id)
+        public IActionResult GetGameProgress([FromRoute] int id)
         {
             IActionResult result = NotFound();
-            GameProgressDto gameProgress = gameProgressBusinessLogic.GetGameProgress(id);
-            if (gameProgress != null)
-            {
-                result = Ok(gameProgress);
-            }
+
             return result;
         }
 

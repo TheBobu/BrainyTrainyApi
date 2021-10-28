@@ -8,11 +8,7 @@ namespace BrainyTrainy.Domain.Entities
         [Required]
         public DateTime AddedDate { get; set; }
 
-        public Game Game { get; set; }
         public int GameHistoryId { get; set; }
-
-        [Required]
-        public int GameId { get; set; }
 
         [Required]
         public int Score { get; set; }

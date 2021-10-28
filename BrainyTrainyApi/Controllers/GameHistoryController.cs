@@ -1,10 +1,6 @@
-﻿using BrainyTrainy.Dtos.Game;
-using Microsoft.AspNetCore.Http;
+﻿using BrainyTrainy.BusinessLogic.Interfaces;
+using BrainyTrainy.Dtos.Game;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BrainyTrainy.Api.Controllers
 {
@@ -14,13 +10,13 @@ namespace BrainyTrainy.Api.Controllers
     {
         public GameHistoryController(IGameHistoryBusinessLogic gameHistoryBusinessLogic)
         {
-
         }
+
         [HttpPost]
         public IActionResult AddGameHistory(GameHistoryDto gameHistoryDto)
         {
             IActionResult result = StatusCode(500);
-
+            return result;
         }
     }
 }

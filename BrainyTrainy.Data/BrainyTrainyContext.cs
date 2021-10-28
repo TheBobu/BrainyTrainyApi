@@ -1,5 +1,8 @@
 ﻿using BrainyTrainy.Domain.Entities;
+using BrainyTrainy.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace BrainyTrainy.Data
 {
@@ -20,6 +23,18 @@ namespace BrainyTrainy.Data
             builder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
+
+            // Seed database with all Colors
+            foreach (GameType gameType in Enum.GetValues(typeof(GameType)).Cast<GameType>())
+            {
+                Game game = new Game
+                {
+                    Id = gameType,
+                    Name = gameType.ToString(),
+                };
+
+                builder.Entity<Game>().HasData(game);
+            }
         }
     }
 }

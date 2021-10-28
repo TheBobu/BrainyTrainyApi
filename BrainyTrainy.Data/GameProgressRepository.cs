@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using BrainyTrainy.Domain.Entities;
+﻿using BrainyTrainy.Domain.Entities;
 using BrainyTrainy.Domain.Interfaces;
 
 namespace BrainyTrainy.Data
@@ -8,6 +7,6 @@ namespace BrainyTrainy.Data
     {
         public GameProgressRepository(BrainyTrainyContext brainyTrainyContext) : base(brainyTrainyContext)
         {
-
         }
+    }
 }
