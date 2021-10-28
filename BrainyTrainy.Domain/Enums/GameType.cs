@@ -6,5 +6,6 @@
         Quiz = 2,
         Puzzle = 3,
         FillTheGaps = 4,
+        Matching = 5,
     }
 }

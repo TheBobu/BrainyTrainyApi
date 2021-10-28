@@ -1,5 +1,4 @@
-﻿using BrainyTrainy.Domain;
-using BrainyTrainy.Domain.Interfaces;
+﻿using BrainyTrainy.Domain.Interfaces;
 
 namespace BrainyTrainy.Data
 {
@@ -9,11 +8,14 @@ namespace BrainyTrainy.Data
         private IGameRepository gameRepository;
         private IUserRepository userRepository;
         private IPersonInfoRepository personInfoRepository;
+        private IGameHistoryRepository gameHistoryRepository;
+        private IGameProgressRepository gameProgressRepository;
+
         public IGameRepository GameRepository => gameRepository ??= new GameRepository(brainyTrainyContext);
         public IUserRepository UserRepository => userRepository ??= new UserRepository(brainyTrainyContext);
         public IPersonInfoRepository PersonInfoRepository => personInfoRepository ??= new PersonInfoRepository(brainyTrainyContext);
-
-        public IGameProgressRepository GameProgressRepository => throw new System.NotImplementedException();
+        public IGameProgressRepository GameProgressRepository => gameProgressRepository ??= new GameProgressRepository(brainyTrainyContext);
+        public IGameHistoryRepository GameHistoryRepository => gameHistoryRepository ??= new GameHistoryRepository(brainyTrainyContext);
 
         public UnitOfWork(BrainyTrainyContext brainyTrainyContext)
         {

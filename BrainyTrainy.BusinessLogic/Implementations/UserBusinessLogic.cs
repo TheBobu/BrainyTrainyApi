@@ -69,7 +69,7 @@ namespace BrainyTrainy.BusinessLogic.Implementations
                 unitOfWork.Save();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
