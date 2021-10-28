@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
 using BrainyTrainy.BusinessLogic.Interfaces;
+using BrainyTrainy.Domain.Entities;
 using BrainyTrainy.Domain.Interfaces;
 using BrainyTrainy.Dtos.Game;
 
@@ -19,19 +20,13 @@ namespace BrainyTrainy.BusinessLogic.Implementations
         }
         public bool AddGameProgress(GameProgressDto gameProgressDto)
         {
-            throw new NotImplementedException();
+            return true;
+           //return unitOfWork.GameProgressRepository.Add(gameProgressDto)
         }
 
-        public GameProgressDto GetGameProgress(int id)
+        public GameProgress GetGameProgress(int id)
         {
-            var gameProgress = unitOfWork.GameRepository.Get(id).Result;
-            //gameProgress.GameId = unitOfWork.GameProgressRepository.GetGameProgressById(id)
-
-            if (gameProgress != null)
-            {
-                return mapper.Map<GameProgressDto>(gameProgress);
-            }
-            return null;
+            return unitOfWork.GameProgressRepository.Get(id).Result;
         }
     }
 }
