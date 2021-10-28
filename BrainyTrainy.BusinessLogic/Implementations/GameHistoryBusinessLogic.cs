@@ -72,7 +72,7 @@ namespace BrainyTrainy.BusinessLogic.Implementations
                 scores.Add(new LeaderboardDto
                 {
                     Game = item.Game,
-                    UserScores = userScores.ToList()
+                    UserScores = userScores.OrderByDescending(x=>x.Score).ToList()
                 });
             }
 
