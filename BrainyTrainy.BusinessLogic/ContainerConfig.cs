@@ -14,6 +14,7 @@ namespace BrainyTrainy.BusinessLogic
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IUserBusinessLogic, UserBusinessLogic>();
+            services.AddScoped<IGameHistoryBusinessLogic, GameHistoryBusinessLogic>();
             return services;
         }
     }

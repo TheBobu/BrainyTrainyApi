@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using BrainyTrainy.BusinessLogic.Interfaces;
+using BrainyTrainy.Domain.Entities;
 using BrainyTrainy.Domain.Interfaces;
 using BrainyTrainy.Dtos.Game;
 using System;
+using System.Collections.Generic;
 
 namespace BrainyTrainy.BusinessLogic.Implementations
 {
@@ -21,12 +23,26 @@ namespace BrainyTrainy.BusinessLogic.Implementations
         {
             try
             {
+                var gameHistory = mapper.Map<GameHistory>(gameHistoryDto);
+                gameHistory.TimeCompleted = new TimeSpan(0, gameHistoryDto.Minutes, gameHistoryDto.Seconds);
+                unitOfWork.GameHistoryRepository.Add(gameHistory);
+                unitOfWork.Save();
                 return true;
             }
             catch (Exception)
             {
                 return false;
             }
+        }
+
+        public List<GameHistoryDto> GetGameHistories(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GameHistoryDto GetGameHistory(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
