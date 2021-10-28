@@ -3,8 +3,10 @@ using BrainyTrainy.BusinessLogic.Interfaces;
 using BrainyTrainy.Domain.Entities;
 using BrainyTrainy.Domain.Interfaces;
 using BrainyTrainy.Dtos.Game;
+using BrainyTrainy.Dtos.User;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BrainyTrainy.BusinessLogic.Implementations
 {
@@ -33,6 +35,12 @@ namespace BrainyTrainy.BusinessLogic.Implementations
             {
                 return false;
             }
+        }
+
+        public List<UserScoreDto> GetBestScore()
+        {
+            var gameHistories = unitOfWork.GameHistoryRepository.GetAll().Result;
+            var scoresByUser = from gameHistory in gameHistories group gameHistory.Score by gameHistory.UserId into g select new { UserId = g.Key, Scores = g.ToList() };
         }
 
         public List<GameHistoryDto> GetGameHistories(int userId)
