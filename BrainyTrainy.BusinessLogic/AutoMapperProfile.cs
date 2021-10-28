@@ -22,6 +22,11 @@ namespace BrainyTrainy.BusinessLogic
                 .ForMember(d => d.Name, s => s.MapFrom(src => src.Name));
             CreateMap<Game, GameDto>()
                 .ForMember(d => d.Id, s => s.MapFrom(src => (int)src.Id));
+
+            CreateMap<GameHistory, GameHistoryLightDto>()
+                .ForMember(d => d.Seconds, s => s.MapFrom(src => src.TimeCompleted.Seconds))
+                .ForMember(d => d.Minutes, s => s.MapFrom(src => src.TimeCompleted.Minutes))
+                .ForMember(d => d.GameName, s => s.MapFrom(src => Enum.GetName(typeof(GameType), src.GameId)));
         }
     }
 }

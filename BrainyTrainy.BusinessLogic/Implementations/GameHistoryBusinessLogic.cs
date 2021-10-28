@@ -5,6 +5,7 @@ using BrainyTrainy.Domain.Interfaces;
 using BrainyTrainy.Dtos.Game;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BrainyTrainy.BusinessLogic.Implementations
 {
@@ -38,6 +39,17 @@ namespace BrainyTrainy.BusinessLogic.Implementations
         public List<GameHistoryDto> GetGameHistories(int userId)
         {
             throw new NotImplementedException();
+        }
+
+        public List<GameHistoryLightDto> GetGameHistoriesLight(int userId)
+        {
+            var gameHistories = mapper.Map<List<GameHistoryLightDto>>(
+                unitOfWork.GameHistoryRepository.GetGameHistories(userId)
+                .OrderBy(x => x.AddedDate)
+                .ToList()
+                );
+
+            return gameHistories;
         }
 
         public GameHistoryDto GetGameHistory(int id)

@@ -4,14 +4,16 @@ using BrainyTrainy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BrainyTrainy.Data.Migrations
 {
     [DbContext(typeof(BrainyTrainyContext))]
-    partial class BrainyTrainyContextModelSnapshot : ModelSnapshot
+    [Migration("20211028123103_gameid-in-gamehistory")]
+    partial class gameidingamehistory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

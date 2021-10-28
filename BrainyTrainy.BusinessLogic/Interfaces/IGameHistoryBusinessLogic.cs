@@ -10,5 +10,6 @@ namespace BrainyTrainy.BusinessLogic.Interfaces
         bool AddGameHistory(GameHistoryDto gameHistoryDto);
         GameHistoryDto GetGameHistory(int id);
         List<GameHistoryDto> GetGameHistories(int userId);
+        List<GameHistoryLightDto> GetGameHistoriesLight(int userId);
     }
 }

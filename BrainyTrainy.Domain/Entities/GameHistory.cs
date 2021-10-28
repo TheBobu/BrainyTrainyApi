@@ -10,6 +10,8 @@ namespace BrainyTrainy.Domain.Entities
 
         public int GameHistoryId { get; set; }
 
+        public int GameId { get; set; }
+
         [Required]
         public int Score { get; set; }
 

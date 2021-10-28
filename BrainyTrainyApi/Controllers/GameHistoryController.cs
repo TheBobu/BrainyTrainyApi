@@ -1,6 +1,7 @@
 ﻿using BrainyTrainy.BusinessLogic.Interfaces;
 using BrainyTrainy.Dtos.Game;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace BrainyTrainy.Api.Controllers
 {
@@ -38,14 +39,19 @@ namespace BrainyTrainy.Api.Controllers
             }
             return result;
         }
+
         [HttpGet("All/{userId}")]
         public IActionResult GetGameHistories(int userId)
         {
             IActionResult result = StatusCode(404);
-            var game = gameHistoryBusinessLogic.GetGameHistories(userId);
-            if (game != null)
+            var gameHistories = gameHistoryBusinessLogic.GetGameHistoriesLight(userId).GroupBy(x => x.GameName).Select(x => new
             {
-                result = Ok(game);
+                Game = x.Key,
+                Records = x.Select(item => item)
+            });
+            if (gameHistories != null)
+            {
+                result = Ok(gameHistories);
             }
             return result;
         }
