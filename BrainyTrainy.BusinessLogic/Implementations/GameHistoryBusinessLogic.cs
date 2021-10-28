@@ -37,10 +37,21 @@ namespace BrainyTrainy.BusinessLogic.Implementations
             }
         }
 
-        public List<UserScoreDto> GetBestScore()
+        public List<UserScoreDto> GetBestScores()
         {
             var gameHistories = unitOfWork.GameHistoryRepository.GetAll().Result;
-            var scoresByUser = from gameHistory in gameHistories group gameHistory.Score by gameHistory.UserId into g select new { UserId = g.Key, Scores = g.ToList() };
+            foreach (var record in gameHistories)
+            {
+                record.User = unitOfWork.UserRepository.Get(record.UserId).Result;
+                record.User.Info = unitOfWork.PersonInfoRepository.Get(record.User.InfoId).Result;
+            }
+            var scoresByUser = gameHistories.GroupBy(x => x.User.Info.FullName).Select(x => new UserScoreDto
+            {
+                FullName = x.Key,
+                Score = x.Select(item => item.Score).Max(),
+                TimeCompleted = x.Select(item => item.TimeCompleted).Min()
+            });
+            return scoresByUser.ToList();
         }
 
         public List<GameHistoryDto> GetGameHistories(int userId)

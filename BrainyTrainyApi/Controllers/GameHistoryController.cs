@@ -55,5 +55,17 @@ namespace BrainyTrainy.Api.Controllers
             }
             return result;
         }
+
+        [HttpGet("Leaderboard")]
+        public IActionResult GetLeaderboard()
+        {
+            IActionResult result = StatusCode(404);
+            var leaderboard = gameHistoryBusinessLogic.GetBestScores();
+            if (leaderboard != null)
+            {
+                result = Ok(leaderboard);
+            }
+            return result;
+        }
     }
 }
