@@ -64,7 +64,6 @@ namespace BrainyTrainy.BusinessLogic.Implementations
         {
             try
             {
-                unitOfWork.PersonInfoRepository.Add(mapper.Map<PersonInfo>(userDto.Info));
                 unitOfWork.UserRepository.Add(mapper.Map<User>(userDto));
                 unitOfWork.Save();
                 return true;
